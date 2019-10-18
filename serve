@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. venv/bin/activate
+(cd example.com && twistd -n web --path . --listen tcp:8080)
+

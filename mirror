@@ -1,0 +1,20 @@
+#!/bin/bash
+
+rm example.com/robots.txt.html
+
+wget --no-parent \
+     --convert-links \
+     --adjust-extension \
+     --page-requisites \
+     --load-cookies cookies \
+     --exclude-directories '/some_dir' \
+     --reject "robot.txt" \
+     --reject-regex "exclude\.example\.com:[0-9]+/.*" \
+     --user-agent "Mozilla/5.0 (X11; Linux x86_64; rv:99.0) Gecko/20100101 Firefox/999.0" \
+     --mirror \
+     http://example.com \
+     2>&1 | tee wget.log
+
+### stub for post-processing
+ln -sf index.html example.com/robots.txt.html
+
